@@ -33,24 +33,16 @@
         <lock4j.version>2.2.7</lock4j.version>
         <dynamic-ds.version>4.3.1</dynamic-ds.version>
         <alibaba-ttl.version>2.14.4</alibaba-ttl.version>
-        <snailjob.version>1.0.1</snailjob.version>
         <mapstruct-plus.version>1.3.6</mapstruct-plus.version>
         <mapstruct-plus.lombok.version>0.2.0</mapstruct-plus.lombok.version>
         <lombok.version>1.18.32</lombok.version>
         <bouncycastle.version>1.76</bouncycastle.version>
-        <justauth.version>1.16.6</justauth.version>
         <!-- 离线IP地址定位库 -->
         <ip2region.version>2.7.0</ip2region.version>
 
         <!-- OSS 配置 -->
         <aws.sdk.version>2.25.15</aws.sdk.version>
         <aws.crt.version>0.29.13</aws.crt.version>
-        <!-- SMS 配置 -->
-        <sms4j.version>3.2.1</sms4j.version>
-        <!-- 限制框架中的fastjson版本 -->
-        <fastjson.version>1.2.83</fastjson.version>
-        <!--工作流配置-->
-        <flowable.version>7.0.0</flowable.version>
 
         <!-- 插件版本 -->
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
@@ -110,21 +102,6 @@
                 <version>${hutool.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.flowable</groupId>
-                <artifactId>flowable-bom</artifactId>
-                <version>${flowable.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- JustAuth 的依赖配置-->
-            <dependency>
-                <groupId>me.zhyd.oauth</groupId>
-                <artifactId>JustAuth</artifactId>
-                <version>${justauth.version}</version>
             </dependency>
 
             <!-- common 的依赖配置-->
@@ -263,12 +240,6 @@
                 <artifactId>s3-transfer-manager</artifactId>
                 <version>${aws.sdk.version}</version>
             </dependency>
-            <!--短信sms4j-->
-            <dependency>
-                <groupId>org.dromara.sms4j</groupId>
-                <artifactId>sms4j-spring-boot-starter</artifactId>
-                <version>${sms4j.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>de.codecentric</groupId>
@@ -292,18 +263,6 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>lock4j-redisson-spring-boot-starter</artifactId>
                 <version>${lock4j.version}</version>
-            </dependency>
-
-            <!-- SnailJob Client -->
-            <dependency>
-                <groupId>com.aizuda</groupId>
-                <artifactId>snail-job-client-starter</artifactId>
-                <version>${snailjob.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.aizuda</groupId>
-                <artifactId>snail-job-client-job-core</artifactId>
-                <version>${snailjob.version}</version>
             </dependency>
 
             <dependency>
@@ -333,20 +292,8 @@
             </dependency>
 
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.dromara</groupId>
                 <artifactId>ruoyi-system</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.dromara</groupId>
-                <artifactId>ruoyi-job</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -359,13 +306,6 @@
             <dependency>
                 <groupId>org.dromara</groupId>
                 <artifactId>ruoyi-demo</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <!--  工作流模块  -->
-            <dependency>
-                <groupId>org.dromara</groupId>
-                <artifactId>ruoyi-workflow</artifactId>
                 <version>${revision}</version>
             </dependency>
 

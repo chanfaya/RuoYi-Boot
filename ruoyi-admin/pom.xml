@@ -45,27 +45,12 @@
 
         <dependency>
             <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-social</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.dromara</groupId>
             <artifactId>ruoyi-common-ratelimiter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-mail</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.dromara</groupId>
             <artifactId>ruoyi-system</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-job</artifactId>
         </dependency>
 
         <!-- 代码生成-->
@@ -80,11 +65,6 @@
             <artifactId>ruoyi-demo</artifactId>
         </dependency>
 
-        <!--  工作流模块  -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-workflow</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>de.codecentric</groupId>
