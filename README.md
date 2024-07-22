@@ -49,7 +49,7 @@
 
 
 ## 项目结构
-
+```
 RuoYi-Boot
 ├─ ruoyi-admin                         // 管理模块 [8080,9101]
 │  └─ RuoYiApplication                 // 启动类
@@ -103,7 +103,7 @@ RuoYi-Boot
 ├─ pom.xml              // 公共依赖
 ├─ README.md            // 框架说明文件
 
-
+```
 
 
 
