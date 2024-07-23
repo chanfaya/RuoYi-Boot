@@ -134,6 +134,20 @@ public class VelocityUtils {
         } else if (GenConstants.TPL_TREE.equals(tplCategory)) {
             templates.add("vm/vue/index-tree.vue.vm");
         }
+        /**
+         * 添加vben
+         */
+        templates.add("vm/vben/api/index.ts.vm");
+        templates.add("vm/vben/api/model.ts.vm");
+        templates.add("vm/vben/views/data.ts.vm");
+        if (GenConstants.TPL_CRUD.equals(tplCategory)) {
+            templates.add("vm/vben/views/index_vben.vue.vm");
+            templates.add("vm/vben/views/modal.vue.vm");
+        } else if (GenConstants.TPL_TREE.equals(tplCategory)) {
+            templates.add("vm/vben/views/index_vben_tree.vue.vm");
+            templates.add("vm/vben/views/modal_tree.vue.vm");
+        }
+
         return templates;
     }
 
@@ -186,6 +200,34 @@ public class VelocityUtils {
         } else if (template.contains("index-tree.vue.vm")) {
             fileName = StringUtils.format("{}/views/{}/{}/index.vue", vuePath, moduleName, businessName);
         }
+
+        String vbenPath = "vben";
+        String BusinessName = StringUtils.capitalize(genTable.getBusinessName());
+        /**
+         * 添加vben
+         */
+        if (template.contains("index.ts.vm")) {
+            fileName = StringUtils.format("{}/api/{}/{}/index.ts", vbenPath, moduleName, businessName);
+        }
+        if (template.contains("model.ts.vm")) {
+            fileName = StringUtils.format("{}/api/{}/{}/model.ts", vbenPath, moduleName, businessName);
+        }
+        if (template.contains("index_vben.vue.vm")) {
+            fileName = StringUtils.format("{}/views/{}/{}/index.vue", vbenPath, moduleName, businessName);
+        }
+        if (template.contains("index_vben_tree.vue.vm")) {
+            fileName = StringUtils.format("{}/views/{}/{}/index.vue", vbenPath, moduleName, businessName);
+        }
+        if (template.contains("data.ts.vm")) {
+            fileName = StringUtils.format("{}/views/{}/{}/{}.data.ts", vbenPath, moduleName, businessName, businessName);
+        }
+        if (template.contains("modal.vue.vm")) {
+            fileName = StringUtils.format("{}/views/{}/{}/{}Modal.vue", vbenPath, moduleName, businessName, BusinessName);
+        }
+        if (template.contains("modal_tree.vue.vm")) {
+            fileName = StringUtils.format("{}/views/{}/{}/{}Modal.vue", vbenPath, moduleName, businessName, BusinessName);
+        }
+
         return fileName;
     }
 
