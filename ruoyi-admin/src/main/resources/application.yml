@@ -21,8 +21,8 @@ captcha:
 
 # 开发环境配置
 server:
-  # 服务器的HTTP端口，默认为8080
-  port: 8080
+  # 服务器的HTTP端口，默认为8090
+  port: 8090
   servlet:
     # 应用的访问路径
     context-path: /
@@ -126,6 +126,8 @@ tenant:
     - sys_user_role
     - sys_client
     - sys_oss_config
+    - mq_message
+    - undo_log
 
 # MyBatisPlus配置
 # https://baomidou.com/config/
