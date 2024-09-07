@@ -21,9 +21,6 @@ import org.dromara.common.ratelimiter.enums.LimitType;
 import org.dromara.common.redis.utils.RedisUtils;
 import org.dromara.common.web.config.properties.CaptchaProperties;
 import org.dromara.common.web.enums.CaptchaType;
-import org.dromara.sms4j.api.SmsBlend;
-import org.dromara.sms4j.api.entity.SmsResponse;
-import org.dromara.sms4j.core.factory.SmsFactory;
 import org.dromara.web.domain.vo.CaptchaVo;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
@@ -48,54 +45,6 @@ import java.util.LinkedHashMap;
 public class CaptchaController {
 
     private final CaptchaProperties captchaProperties;
-    private final MailProperties mailProperties;
-
-    /**
-     * 短信验证码
-     *
-     * @param phonenumber 用户手机号
-     */
-    @RateLimiter(key = "#phonenumber", time = 60, count = 1)
-    @GetMapping("/resource/sms/code")
-    public R<Void> smsCode(@NotBlank(message = "{user.phonenumber.not.blank}") String phonenumber) {
-        String key = GlobalConstants.CAPTCHA_CODE_KEY + phonenumber;
-        String code = RandomUtil.randomNumbers(4);
-        RedisUtils.setCacheObject(key, code, Duration.ofMinutes(Constants.CAPTCHA_EXPIRATION));
-        // 验证码模板id 自行处理 (查数据库或写死均可)
-        String templateId = "";
-        LinkedHashMap<String, String> map = new LinkedHashMap<>(1);
-        map.put("code", code);
-        SmsBlend smsBlend = SmsFactory.getSmsBlend("config1");
-        SmsResponse smsResponse = smsBlend.sendMessage(phonenumber, templateId, map);
-        if (!smsResponse.isSuccess()) {
-            log.error("验证码短信发送异常 => {}", smsResponse);
-            return R.fail(smsResponse.getData().toString());
-        }
-        return R.ok();
-    }
-
-    /**
-     * 邮箱验证码
-     *
-     * @param email 邮箱
-     */
-    @RateLimiter(key = "#email", time = 60, count = 1)
-    @GetMapping("/resource/email/code")
-    public R<Void> emailCode(@NotBlank(message = "{user.email.not.blank}") String email) {
-        if (!mailProperties.getEnabled()) {
-            return R.fail("当前系统没有开启邮箱功能！");
-        }
-        String key = GlobalConstants.CAPTCHA_CODE_KEY + email;
-        String code = RandomUtil.randomNumbers(4);
-        RedisUtils.setCacheObject(key, code, Duration.ofMinutes(Constants.CAPTCHA_EXPIRATION));
-        try {
-            MailUtils.sendText(email, "登录验证码", "您本次验证码为：" + code + "，有效性为" + Constants.CAPTCHA_EXPIRATION + "分钟，请尽快填写。");
-        } catch (Exception e) {
-            log.error("验证码短信发送异常 => {}", e.getMessage());
-            return R.fail(e.getMessage());
-        }
-        return R.ok();
-    }
 
     /**
      * 生成验证码
